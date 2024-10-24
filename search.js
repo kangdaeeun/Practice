@@ -8,16 +8,10 @@ export const options = {
     }
 };
 searchInput.addEventListener('input', (event) => {
-    // const searchTerm = event.target.value.toLowerCase();
-    // const searchedMovie = response.results.filter((movie) => 
-    //     movie.title.toLowerCase().includes(searchTerm)
-    // );
-    // console.log(searchedMovie)
     const searchValue = searchInput.value
     fetch(`https://api.themoviedb.org/3/search/movie?query=${searchValue}&include_adult=false&language=en-US&page=1`, options)
         .then(response => response.json())
         .then((response) => {
-            // console.log(response)
             const movieContainer = document.querySelector('.movie-container');
             movieContainer.replaceChildren()
             for (let i = 0; i < response.results.length; i++) {
@@ -30,16 +24,13 @@ searchInput.addEventListener('input', (event) => {
         </div>
     </div>
     `;
-                // movieContainer.innerHTML += html; // 더 간편하게 추가
                 document.querySelector(".movie-container").innerHTML =
                     document.querySelector(".movie-container").innerHTML + html;   // 누적
-                // console.log(response.results[i]);
             }
 
             // for문이 아니라 내가 선택한 영화 '하나'만 나오게  // 리팩토링할때 분리하기
             movieContainer.addEventListener('click', (event) => {
                 const movieCard = event.target.closest('div');
-                // console.log(Number(movieCard.id));
                 const movieModal = document.getElementById('movieModal');
                 movieModal.style.display = 'flex';
                 const modal = document.querySelector('.modal-content');

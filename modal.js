@@ -2,7 +2,6 @@ import { options } from "./search.js";
 fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
     .then(response => response.json())
     .then((response) => {
-        // console.log(respo
         const movieContainer = document.querySelector('.movie-container');
         for (let i = 0; i < response.results.length; i++) {
             const html = `
@@ -14,10 +13,8 @@ fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_v
                 </div>
                 </div>
                 `;
-                // movieContainer.innerHTML += html; // 더 간편하게 추가
                 document.querySelector(".movie-container").innerHTML =
                 document.querySelector(".movie-container").innerHTML + html;   // 누적
-                // console.log(response.results[i]);
             }
             // for문이 아니라 내가 선택한 영화 '하나'만 나오게  // 리팩토링할때 분리하기
             movieContainer.addEventListener('click', (event) => {
